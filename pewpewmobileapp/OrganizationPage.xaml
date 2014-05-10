@@ -23,7 +23,19 @@
 				<ScrollViewer>
 					<StackPanel x:Name="requestedAssets" Height="483" Width="420">
 						<maps:Map x:Name="MyMapControl" Height="349" />
-					</StackPanel>
+                        <TextBlock x:Name="txtEstimatedTime" TextWrapping="Wrap" Text="Estimated Time: x hours y mins"/>
+                        <TextBlock x:Name="txtDirections" TextWrapping="Wrap" Text="x
+                                   x
+                                   x
+                                   x
+                                   x
+                                   x
+                                   x
+                                   x
+                                   x
+                                   x
+                                   x"/>
+                    </StackPanel>
 				</ScrollViewer>
 			</phone:PanoramaItem>
 
