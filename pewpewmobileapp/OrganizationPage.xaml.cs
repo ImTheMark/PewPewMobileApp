@@ -229,6 +229,18 @@ namespace pewpewmobileapp
                     }
                 }
             }
+            myAssets.Children.Add(truckList);
+            myAssets.Children.Add(lifevestList);
+            myAssets.Children.Add(doctorList);
+            myAssets.Children.Add(rubberBoatList);
+            myAssets.Children.Add(fireTruckList);
+            myAssets.Children.Add(militaryList);
+            myAssets.Children.Add(socialWorkerList);
+            myAssets.Children.Add(tentList);
+            myAssets.Children.Add(radioList);
+            myAssets.Children.Add(constructionEquipmentsList);
+            myAssets.Children.Add(helicopterList);
+            myAssets.Children.Add(generatorsList);
         }
 
         private async void loadRequestList()
