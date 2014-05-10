@@ -22,7 +22,7 @@
 			<phone:PanoramaItem Header="Deliver Requests">
 				<ScrollViewer>
 					<StackPanel x:Name="requestedAssets" Height="483" Width="420">
-						<maps:Map x:Name="MyMapControl" Tap="GetGeolocationOfTap" Height="349" />
+						<maps:Map x:Name="MyMapControl" Height="349" />
 					</StackPanel>
 				</ScrollViewer>
 			</phone:PanoramaItem>
