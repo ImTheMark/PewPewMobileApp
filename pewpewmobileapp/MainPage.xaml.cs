@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using pewpewmobileapp.Resources;
+using pewpewmobileapp.Objects;
 
 namespace pewpewmobileapp
 {
@@ -32,7 +33,7 @@ namespace pewpewmobileapp
                 while (NavigationService.CanGoBack)
                     NavigationService.RemoveBackEntry();
         }
-        /*
+        
         private async void loginAccount(object sender, RoutedEventArgs e)
         {
             int count = 0;
@@ -40,12 +41,12 @@ namespace pewpewmobileapp
 
             try
             {
-                if (txtUsername.Text.Equals("admin") && txtPassword.Text.Equals("admin"))
+                if (txtUsername.Text.Equals("admin") && txtPassword.Password.Equals("admin"))
                 {
-                    //NavigationService.Navigate(new Uri("/AdminPage.xaml", UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/AdminPage.xaml", UriKind.Relative));
                     userID = "1";
                     userType = "ADMIN";
-                    txtMessage.Text = "LOGIN ADMIN";
+                    //txtMessage.Text = "LOGIN ADMIN";
                     count++;
                 }
                 else
@@ -54,7 +55,7 @@ namespace pewpewmobileapp
                     List<Town> filter = await results.ToListAsync();
                     foreach (Town a in filter)
                     {
-                        if (a.email.Equals(txtUsername.Text) && a.password.Equals(txtPassword.Text))
+                        if (a.email.Equals(txtUsername.Text) && a.password.Equals(txtPassword.Password))
                         {
                             userID = a.id;
                             userType = "TOWN";
@@ -63,15 +64,15 @@ namespace pewpewmobileapp
                         }
                     }
                     if (userType == "TOWN")
-                        //NavigationService.Navigate(new Uri("/TownPage.xaml", UriKind.Relative));
-                        txtMessage.Text = "LOGIN TOWN";
+                        NavigationService.Navigate(new Uri("/TownPage.xaml", UriKind.Relative));
+                        //txtMessage.Text = "LOGIN TOWN";
                     else
                     {
                         var results2 = App.MobileService.GetTable<Organization>();
                         List<Organization> filter2 = await results2.ToListAsync();
                         foreach (Organization a in filter2)
                         {
-                            if (a.email.Equals(txtUsername.Text) && a.password.Equals(txtPassword.Text))
+                            if (a.email.Equals(txtUsername.Text) && a.password.Equals(txtPassword.Password))
                             {
                                 userID = a.id;
                                 userType = "ORG";
@@ -80,13 +81,13 @@ namespace pewpewmobileapp
                             }
                         }
                         if (userType == "ORG")
-                            //NavigationService.Navigate(new Uri("/OrgPage.xaml", UriKind.Relative));
-                            txtMessage.Text = "LOGIN ORG";
+                            NavigationService.Navigate(new Uri("/OrgPage.xaml", UriKind.Relative));
+                            //txtMessage.Text = "LOGIN ORG";
                     }
                 }
 
-                if (count == 0)
-                    txtMessage.Text = "ERROR";
+                //if (count == 0)
+                //    txtMessage.Text = "ERROR";
 
             }
             catch (Exception e1)
@@ -94,6 +95,6 @@ namespace pewpewmobileapp
                 System.Diagnostics.Debug.WriteLine("NO");
             }
         }
-         */ 
+        
     }
 }
