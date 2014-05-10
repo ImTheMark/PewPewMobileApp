@@ -6,52 +6,142 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
+    <phone:PhoneApplicationPage.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
+            <Setter Property="BorderThickness" Value="{StaticResource PhoneBorderThickness}"/>
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}"/>
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}"/>
+            <Setter Property="Padding" Value="10,5,10,6"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver"/>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentContainer">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneButtonBasePressedForegroundBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="ButtonBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneAccentBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentContainer">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ButtonBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="ButtonBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="0">
+                                <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" FontSize="26.667" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ControlTemplate x:Key="PanoramaStyle" TargetType="phone:Panorama">
+            <Grid Height="770">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Primitives:PanningBackgroundLayer x:Name="BackgroundLayer" Grid.RowSpan="2" HorizontalAlignment="Left">
+                    <Border x:Name="background" Background="{TemplateBinding Background}" />
+                </Primitives:PanningBackgroundLayer>
+
+                <Primitives:PanningTitleLayer x:Name="TitleLayer" Grid.Row="0" HorizontalAlignment="Left"  Margin="10,0,0,0"
+					Content="Tracker-X App" ContentTemplate="{TemplateBinding TitleTemplate}"
+					FontSize="96" CharacterSpacing="-35" FontFamily="Aharoni" Foreground="#FF1870C7" />
+
+                <Primitives:PanningLayer x:Name="ItemsLayer" Grid.Row="1" HorizontalAlignment="Left">
+                    <ItemsPresenter x:Name="items"/>
+                </Primitives:PanningLayer>
+
+            </Grid>
+        </ControlTemplate>
+    </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" MinHeight="705"/>
         </Grid.RowDefinitions>
+        <phone:Panorama Title="panorama" Foreground="#FF6A6A6A" Template="{StaticResource PanoramaStyle}" Margin="0,0,0,-63" VerticalContentAlignment="Stretch" >
+            <phone:PanoramaItem CacheMode="{x:Null}" Header="Resource Map" Style="{StaticResource pitemStyle}">
+                <phone:PanoramaItem.RenderTransform>
+                    <TranslateTransform/>
+                </phone:PanoramaItem.RenderTransform>
+                <Grid Margin="0">
+                    <TextBlock HorizontalAlignment="Right" Margin="0,0,-1,30" TextWrapping="Wrap" Text="&gt;&gt;" VerticalAlignment="Bottom" FontSize="29.333"/>
+                </Grid>
+            </phone:PanoramaItem>
+            <phone:PanoramaItem CacheMode="{x:Null}" Header="" Style="{StaticResource pitemStyle}">
+                <phone:PanoramaItem.RenderTransform>
+                    <TranslateTransform/>
+                </phone:PanoramaItem.RenderTransform>
+                <Grid>
+                    <Button x:Name="s" Content="Login" HorizontalAlignment="Left" Margin="49,300,0,0" VerticalAlignment="Top" Foreground="#FF194B17" Background="#FF97FF78" BorderBrush="#FF4AC736" Style="{StaticResource ButtonStyle}" Height="55" Width="323" FontSize="29.333" Click="loginAccount"/>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="pewpewmobileapp" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
-        </StackPanel>
+                    <TextBox x:Name="txtUsername" HorizontalAlignment="Center" Height="67" Margin="49,143,48,385" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="323" Style="{StaticResource TextBox}"/>
+                    <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="49,217,0,0" VerticalAlignment="Top" Width="323" Style="{StaticResource passwordStyle}" BorderBrush="#FFACACAC" Password="asfasfas" Height="67"/>
+                    <Button Content="Sign Up Here!" HorizontalAlignment="Left" Margin="178,530,0,0" VerticalAlignment="Top" Foreground="#FF17314B" Background="#FF7897FF" BorderBrush="#FF367FC7" Style="{StaticResource smallButton}" Height="55" Width="194" FontSize="24" VerticalContentAlignment="Bottom"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="135,498,0,0" TextWrapping="Wrap" Text="Don't have an account yet?" VerticalAlignment="Top"/>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*" />
-                <ColumnDefinition Width="2*" />
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Enter some text below and click Save to insert a new TodoItem item into your database" TextWrapping="Wrap" Margin="12"/>
-            <TextBox Grid.Row="1" Grid.Column="0" Name="TodoInput" Text="" />
-            <Button Grid.Row ="1" Grid.Column="1" Name="ButtonSave" Click="ButtonSave_Click">Save</Button>
-            <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Text="Click refresh below to load the unfinished TodoItems from your database. Use the checkbox to complete and update your TodoItems" TextWrapping="Wrap" Margin="12" />
-            <Button Grid.Row="3" Grid.ColumnSpan="2" Name="ButtonRefresh" Click="ButtonRefresh_Click">Refresh</Button>
-            <phone:LongListSelector Grid.Row="4" Grid.ColumnSpan="2" Name="ListItems">
-                <phone:LongListSelector.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox Name="CheckBoxComplete" IsChecked="{Binding Complete, Mode=TwoWay}" Checked="CheckBoxComplete_Checked" Content="{Binding Text}" Margin="10,5" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </phone:LongListSelector.ItemTemplate>
-            </phone:LongListSelector>
-        </Grid>
+                </Grid>
+            </phone:PanoramaItem>
+        </phone:Panorama>
+
+        <!-- LOCALIZATION NOTE:
+            To localize the displayed strings copy their values to appropriately named
+            keys in the app's neutral language resource file (AppResources.resx) then
+            replace the hard-coded text value between the attributes' quotation marks
+            with the binding clause whose path points to that string name.
+
+            For example:
+
+                Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"
+
+            This binding points to the template's string resource named "ApplicationTitle".
+
+            Adding supported languages in the Project Properties tab will create a
+            new resx file per language that can carry the translated values of your
+            UI strings. The binding in these examples will cause the value of the
+            attributes to be drawn from the .resx file that matches the
+            CurrentUICulture of the app at run time.
+         -->
+
+        <!--Uncomment to see an alignment grid to help ensure your controls are
+            aligned on common boundaries.  The image has a top margin of -32px to
+            account for the System Tray. Set this to 0 (or remove the margin altogether)
+            if the System Tray is hidden.
+
+            Before shipping remove this XAML and the image itself.-->
+        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
     </Grid>
+
 </phone:PhoneApplicationPage>

@@ -10,90 +10,87 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using pewpewmobileapp.Resources;
+using pewpewmobileapp.Objects;
 
 namespace pewpewmobileapp
 {
-    public class TodoItem
-    {
-        public string Id { get; set; } 
-
-        [JsonProperty(PropertyName = "text")]
-        public string Text { get; set; }
-
-        [JsonProperty(PropertyName = "complete")]
-        public bool Complete { get; set; }
-    }
-
     public partial class MainPage : PhoneApplicationPage
     {
-        // MobileServiceCollectionView implements ICollectionView (useful for databinding to lists) and 
-        // is integrated with your Mobile Service to make it easy to bind your data to the ListView
-        private MobileServiceCollection<TodoItem, TodoItem> items;
-
-        private IMobileServiceTable<TodoItem> todoTable = App.MobileService.GetTable<TodoItem>();
+        public static string userID = "";
+        public static string userType = "";
 
         // Constructor
         public MainPage()
         {
             InitializeComponent();
         }
-
-        private async void InsertTodoItem(TodoItem todoItem)
-        {
-            // This code inserts a new TodoItem into the database. When the operation completes
-            // and Mobile Services has assigned an Id, the item is added to the CollectionView
-            await todoTable.InsertAsync(todoItem);
-            items.Add(todoItem);
-        }
-
-        private async void RefreshTodoItems()
-        {
-            // This code refreshes the entries in the list view be querying the TodoItems table.
-            // The query excludes completed TodoItems
-            try
-            {
-                items = await todoTable
-                    .Where(todoItem => todoItem.Complete == false)
-                    .ToCollectionAsync();
-            }
-            catch (MobileServiceInvalidOperationException e)
-            {
-                MessageBox.Show(e.Message, "Error loading items", MessageBoxButton.OK);
-            }
-
-            ListItems.ItemsSource = items;
-        }
-
-        private async void UpdateCheckedTodoItem(TodoItem item)
-        {
-            // This code takes a freshly completed TodoItem and updates the database. When the MobileService 
-            // responds, the item is removed from the list 
-            await todoTable.UpdateAsync(item);
-            items.Remove(item);
-        }
-
-        private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
-        {
-            RefreshTodoItems();
-        }
-
-        private void ButtonSave_Click(object sender, RoutedEventArgs e)
-        {
-            var todoItem = new TodoItem { Text = TodoInput.Text };
-            InsertTodoItem(todoItem);
-        }
-
-        private void CheckBoxComplete_Checked(object sender, RoutedEventArgs e)
-        {
-            CheckBox cb = (CheckBox)sender;
-            TodoItem item = cb.DataContext as TodoItem;
-            item.Complete = true;
-            UpdateCheckedTodoItem(item);
-        }
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            RefreshTodoItems();
+            if (NavigationService != null)
+                while (NavigationService.CanGoBack)
+                    NavigationService.RemoveBackEntry();
+        }
+
+        private async void loginAccount(object sender, RoutedEventArgs e)
+        {
+            int count = 0;
+            //btnLogin.IsEnabled = false;
+
+            try
+            {
+                if (txtUsername.Text.Equals("admin") && txtPassword.Password.Equals("admin"))
+                {
+                    NavigationService.Navigate(new Uri("/AdminPage.xaml", UriKind.Relative));
+                    userID = "1";
+                    userType = "ADMIN";
+                    //txtMessage.Text = "LOGIN ADMIN";
+                    count++;
+                }
+                else
+                {
+                    var results = App.MobileService.GetTable<Town>();
+                    List<Town> filter = await results.ToListAsync();
+                    foreach (Town a in filter)
+                    {
+                        if (a.email.Equals(txtUsername.Text) && a.password.Equals(txtPassword.Password))
+                        {
+                            userID = a.id;
+                            userType = "TOWN";
+                            count++;
+                            break;
+                        }
+                    }
+                    if (userType == "TOWN")
+                        NavigationService.Navigate(new Uri("/TownPage.xaml", UriKind.Relative));
+                        //txtMessage.Text = "LOGIN TOWN";
+                    else
+                    {
+                        var results2 = App.MobileService.GetTable<Organization>();
+                        List<Organization> filter2 = await results2.ToListAsync();
+                        foreach (Organization a in filter2)
+                        {
+                            if (a.email.Equals(txtUsername.Text) && a.password.Equals(txtPassword.Password))
+                            {
+                                userID = a.id;
+                                userType = "ORG";
+                                count++;
+                                break;
+                            }
+                        }
+                        if (userType == "ORG")
+                            NavigationService.Navigate(new Uri("/OrganizationPage.xaml", UriKind.Relative));
+                            //txtMessage.Text = "LOGIN ORG";
+                    }
+                }
+                /*
+                if (count == 0)
+                    txtMessage.Text = "ERROR";*/
+
+            }
+            catch (Exception e1)
+            {
+                System.Diagnostics.Debug.WriteLine("NO");
+            }
         }
     }
 }
