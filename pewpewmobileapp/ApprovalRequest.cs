@@ -54,6 +54,10 @@ namespace pewpewmobileapp
 
         }
 
+        public async void AddAsset(Asset asset)
+        {
+            await App.MobileService.GetTable<Asset>().InsertAsync(asset);
+        }
         
     }
 }
