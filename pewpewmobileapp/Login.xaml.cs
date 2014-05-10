@@ -30,15 +30,17 @@ namespace pewpewmobileapp
         private async void loginAccount(object sender, RoutedEventArgs e)
         {
             int count = 0;
-            btnLogin.IsEnabled = false;
+            //btnLogin.IsEnabled = false;
 
             try
             {
                 if (txtUsername.Text.Equals("admin") && txtPassword.Text.Equals("admin"))
                 {
-                    NavigationService.Navigate(new Uri("/AdminPage.xaml", UriKind.Relative));
+                    //NavigationService.Navigate(new Uri("/AdminPage.xaml", UriKind.Relative));
                     userID = "1";
                     userType = "ADMIN";
+                    txtMessage.Text = "LOGIN ADMIN";
+                    count++;
                 }
                 else
                 {
@@ -55,7 +57,8 @@ namespace pewpewmobileapp
                         }
                     }
                     if (userType == "TOWN")
-                        NavigationService.Navigate(new Uri("/TownPage.xaml", UriKind.Relative));
+                        //NavigationService.Navigate(new Uri("/TownPage.xaml", UriKind.Relative));
+                        txtMessage.Text = "LOGIN TOWN";
                     else
                     {
                         var results2 = App.MobileService.GetTable<Organization>();
@@ -71,13 +74,14 @@ namespace pewpewmobileapp
                             }
                         }
                         if (userType == "ORG")
-                            NavigationService.Navigate(new Uri("/OrgPage.xaml", UriKind.Relative));
+                            //NavigationService.Navigate(new Uri("/OrgPage.xaml", UriKind.Relative));
+                            txtMessage.Text = "LOGIN ORG";
                     }
                 }
 
-                /*if(count == 0)
-                    print no account
-                */
+                if (count == 0)
+                    txtMessage.Text = "ERROR";
+                
             }
             catch (Exception e1)
             {

@@ -32,6 +32,7 @@
             <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="72" Margin="28,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="399"/>
             <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Height="72" Margin="28,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="399"/>
             <Button x:Name="btnRegister" Content="Register" HorizontalAlignment="Left" Margin="248,365,0,0" VerticalAlignment="Top"/>
+            <TextBlock x:Name="txtMessage" HorizontalAlignment="Left" Margin="43,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="384"/>
 
         </Grid>
     </Grid>
