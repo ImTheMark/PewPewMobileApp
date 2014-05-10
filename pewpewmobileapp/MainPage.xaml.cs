@@ -15,7 +15,7 @@ namespace pewpewmobileapp
 {
     public class TodoItem
     {
-        public string Id { get; set; }
+        public string Id { get; set; } 
 
         [JsonProperty(PropertyName = "text")]
         public string Text { get; set; }
