@@ -17,5 +17,9 @@ namespace pewpewmobileapp.Objects
         public string borrower { get; set; }
 
         public string status { get; set; }
+        // AVAILABLE
+        // ON THE WAY
+        // ON USE
+        // FOR RETURN
     }
 }

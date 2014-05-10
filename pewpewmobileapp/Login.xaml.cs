@@ -1,30 +1,24 @@
-﻿using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using Microsoft.WindowsAzure.MobileServices;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using pewpewmobileapp.Resources;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+using pewpewmobileapp.Objects;
 
 namespace pewpewmobileapp
 {
-
-    public partial class MainPage : PhoneApplicationPage
+    public partial class Login : PhoneApplicationPage
     {
         public static string userID = "";
         public static string userType = "";
-
-        // Constructor
-        public MainPage()
+        public Login()
         {
             InitializeComponent();
         }
-
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -32,7 +26,7 @@ namespace pewpewmobileapp
                 while (NavigationService.CanGoBack)
                     NavigationService.RemoveBackEntry();
         }
-        /*
+
         private async void loginAccount(object sender, RoutedEventArgs e)
         {
             int count = 0;
@@ -87,13 +81,12 @@ namespace pewpewmobileapp
 
                 if (count == 0)
                     txtMessage.Text = "ERROR";
-
+                
             }
             catch (Exception e1)
             {
                 System.Diagnostics.Debug.WriteLine("NO");
             }
         }
-         */ 
     }
 }
