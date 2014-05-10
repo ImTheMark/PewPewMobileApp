@@ -40,6 +40,14 @@ namespace pewpewmobileapp
         {
             InitializeComponent();
             geolocator = new Geolocator();
+
+            routeQuery.TravelMode = TravelMode.Walking;
+            routeQuery.QueryCompleted += routeQuery_QueryCompleted;
+            GetCurrentLocation();
+            MyMapControl.CartographicMode = MapCartographicMode.Road;
+            MyMapControl.LandmarksEnabled = true;
+            MyMapControl.ZoomLevel = 16;
+
             loadRequestList();
         }
 
@@ -50,12 +58,7 @@ namespace pewpewmobileapp
                 while (NavigationService.CanGoBack)
                     NavigationService.RemoveBackEntry();
 
-            routeQuery.TravelMode = TravelMode.Walking;
-            routeQuery.QueryCompleted += routeQuery_QueryCompleted;
-            GetCurrentLocation();
-            MyMapControl.CartographicMode = MapCartographicMode.Road;
-            MyMapControl.LandmarksEnabled = true;
-            MyMapControl.ZoomLevel = 16;
+  
         }
 
         private async void loadRequestList()

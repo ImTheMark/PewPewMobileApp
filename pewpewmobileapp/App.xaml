@@ -8,7 +8,6 @@
 
     <!--Application Resources-->
     <Application.Resources>
-        <local:LocalizedStrings xmlns:local="clr-namespace:pewpewmobileapp" x:Key="LocalizedStrings"/>
         <ControlTemplate x:Key="panoramaStyle" TargetType="phone:Panorama">
             <Grid>
                 <Grid.RowDefinitions>

@@ -18,9 +18,9 @@
         <shell:ApplicationBar Opacity="1" IsVisible="True" IsMenuEnabled="False" Mode="Default" BackgroundColor="#FF37709C">
             <shell:ApplicationBar.Buttons>
                 <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/sync.png"
-               	Text="Refresh" Click="refreshPostsNotifs"/>
+               	Text="Refresh"/>
                 <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/cancel.png"
-Text="Logout" Click="ApplicationBarIconButton_Click">
+Text="Logout">
                 </shell:ApplicationBarIconButton>
             </shell:ApplicationBar.Buttons>
         </shell:ApplicationBar>
