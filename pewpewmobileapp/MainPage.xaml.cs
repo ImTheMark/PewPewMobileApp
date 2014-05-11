@@ -35,12 +35,17 @@ namespace pewpewmobileapp
         Geolocator geolocator;
         StringBuilder sb = new StringBuilder();
 
+        private readonly IMobileServiceTable<Asset> assetTable = App.MobileService.GetTable<Asset>();
+        private readonly IMobileServiceTable<Organization> orgTable = App.MobileService.GetTable<Organization>();
+        private readonly IMobileServiceTable<Pending> pendingTable = App.MobileService.GetTable<Pending>();
+        private readonly IMobileServiceTable<Town> townTable = App.MobileService.GetTable<Town>();
+
         // Constructor
         public MainPage()
         {
             InitializeComponent();
             geolocator = new Geolocator();
-
+           // populate();
             routeQuery.TravelMode = TravelMode.Walking;
             routeQuery.QueryCompleted += routeQuery_QueryCompleted;
             GetCurrentLocation();
@@ -51,6 +56,247 @@ namespace pewpewmobileapp
             loadRequestList();
         }
 
+
+        private async void populate()
+        {
+
+            Organization org = new Organization();
+            org.name = "oliver";
+            org.contactperson = "alvin";
+            org.phone = "5225";
+            org.email = "o@yahoo.com";
+            org.fax = "1241";
+            org.username = "giver1";
+            org.password = "111";
+            org.address = "manila";
+            org.longitude = 121.019205031916;
+            org.latitude = 14.5596795435995;
+            org.isverified = "true";
+
+            await orgTable.InsertAsync(org);
+
+            org = new Organization();
+            org.name = "vil";
+            org.contactperson = "john";
+            org.phone = "657812";
+            org.email = "v@yahoo.com";
+            org.fax = "112111";
+            org.username = "giver2";
+            org.password = "111";
+            org.address = "quezon";
+            org.longitude = 121.016954993829;
+            org.latitude = 14.5508508011699;
+            org.isverified = "true";
+
+            await orgTable.InsertAsync(org);
+
+            org = new Organization();
+            org.name = "joy";
+            org.contactperson = "cassandra";
+            org.phone = "123456765";
+            org.email = "j@yahoo.com";
+            org.fax = "4444444";
+            org.username = "giver3";
+            org.password = "111";
+            org.address = "quezon city";
+            org.longitude = 121.023305878043;
+            org.latitude = 14.5516221038997;
+            org.isverified = "true";
+
+            await orgTable.InsertAsync(org);
+
+            org = new Organization();
+            org.name = "mark";
+            org.contactperson = "selene";
+            org.phone = "544444";
+            org.email = "m@yahoo.com";
+            org.fax = "34565";
+            org.username = "giver4";
+            org.password = "111";
+            org.address = "luzon";
+            org.longitude = 121.012187702581;
+            org.latitude = 14.5663466770202;
+            org.isverified = "true";
+
+            await orgTable.InsertAsync(org);
+
+            org = new Organization();
+            org.name = "ral";
+            org.contactperson = "archie";
+            org.phone = "6455454";
+            org.email = "r@yahoo.com";
+            org.fax = "95464526";
+            org.username = "giver5";
+            org.password = "111";
+            org.address = "visayas";
+            org.longitude = 121.008334541693;
+            org.latitude = 14.5574766118079;
+            org.isverified = "true";
+
+            await orgTable.InsertAsync(org);
+
+            //
+
+            Town town = new Town();
+            town.name = "barangay1";
+            town.contactperson = "mayor";
+            town.phone = "85565225";
+            town.email = "bar1@yahoo.com";
+            town.username = "barangay1";
+            town.password = "111";
+            town.address = "bar 676";
+            town.longitude = 121.021518521011;
+            town.latitude = 14.5495645143092;
+
+            await townTable.InsertAsync(town);
+
+            town = new Town();
+            town.name = "barangay2";
+            town.contactperson = "bishop";
+            town.phone = "899002125";
+            town.email = "bar2@yahoo.com";
+            town.username = "barangay2";
+            town.password = "111";
+            town.address = "bar 543";
+            town.longitude = 121.02594207041;
+            town.latitude = 14.5575703214854;
+
+            await townTable.InsertAsync(town);
+
+            town = new Town();
+            town.name = "barangay3";
+            town.contactperson = "duterte";
+            town.phone = "4356789087654";
+            town.email = "bar3@yahoo.com";
+            town.username = "barangay3";
+            town.password = "111";
+            town.address = "bar 321";
+            town.longitude = 121.025511743501;
+            town.latitude = 14.5530046150088;
+
+            await townTable.InsertAsync(town);
+
+            town = new Town();
+            town.name = "barangay4";
+            town.contactperson = "gloria";
+            town.phone = "437834783";
+            town.email = "bar4@yahoo.com";
+            town.username = "barangay4";
+            town.password = "111";
+            town.address = "bar 908";
+            town.longitude = 121.019065640867;
+            town.latitude = 14.5622836332768;
+
+            await townTable.InsertAsync(town);
+
+            town = new Town();
+            town.name = "barangay5";
+            town.contactperson = "ninoy";
+            town.phone = "7342312";
+            town.email = "bar5@yahoo.com";
+            town.username = "barangay5";
+            town.password = "111";
+            town.address = "bar 777";
+            town.longitude = 121.014296589419;
+            town.latitude = 14.5614915434271;
+
+            await townTable.InsertAsync(town);
+
+            //
+
+            Pending pend = new Pending();
+            pend.townID = "";
+            pend.ownerID = "";
+            pend.assetName = "";
+
+            await pendingTable.InsertAsync(pend);
+
+            pend = new Pending();
+            pend.townID = "";
+            pend.ownerID = "";
+            pend.assetName = "";
+
+            await pendingTable.InsertAsync(pend);
+
+            pend = new Pending();
+            pend.townID = "";
+            pend.ownerID = "";
+            pend.assetName = "";
+
+            await pendingTable.InsertAsync(pend);
+
+            pend = new Pending();
+            pend.townID = "";
+            pend.ownerID = "";
+            pend.assetName = "";
+
+            await pendingTable.InsertAsync(pend);
+
+            pend = new Pending();
+            pend.townID = "";
+            pend.ownerID = "";
+            pend.assetName = "";
+
+            await pendingTable.InsertAsync(pend);
+
+            //
+
+            Asset asset = new Asset();
+            asset.name = "truck";
+            asset.owner = "16A880E2-2C06-4220-8FCB-44606511A82D";
+            asset.borrower = "";
+            asset.status = "AVAILABLE";
+
+            await assetTable.InsertAsync(asset);
+
+            asset = new Asset();
+            asset.name = "truck";
+            asset.owner = "16A880E2-2C06-4220-8FCB-44606511A82D";
+            asset.borrower = "";
+            asset.status = "AVAILABLE";
+
+            await assetTable.InsertAsync(asset);
+
+            asset = new Asset();
+            asset.name = "life vest";
+            asset.owner = "1CC4C6CB-B47C-4F7E-A9C1-111210AD15CB";
+            asset.borrower = "";
+            asset.status = "AVAILABLE";
+
+            await assetTable.InsertAsync(asset);
+
+            asset = new Asset();
+            asset.name = "life vest";
+            asset.owner = "1CC4C6CB-B47C-4F7E-A9C1-111210AD15CB";
+            asset.borrower = "";
+            asset.status = "AVAILABLE";
+
+            await assetTable.InsertAsync(asset);
+
+            asset = new Asset();
+            asset.name = "life vest";
+            asset.owner = "6102DC97-18BC-4028-ADC6-B0B914FF493A";
+            asset.borrower = "";
+            asset.status = "AVAILABLE";
+
+            await assetTable.InsertAsync(asset);
+
+            asset = new Asset();
+            asset.name = "rubber boat";
+            asset.owner = "1CC4C6CB-B47C-4F7E-A9C1-111210AD15CB";
+            asset.borrower = "";
+            asset.status = "AVAILABLE";
+
+            await assetTable.InsertAsync(asset);
+
+            asset = new Asset();
+            asset.name = "rubber boat";
+            asset.owner = "6102DC97-18BC-4028-ADC6-B0B914FF493A";
+            asset.borrower = "";
+            asset.status = "AVAILABLE";
+
+            await assetTable.InsertAsync(asset);
+        }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -64,9 +310,10 @@ namespace pewpewmobileapp
         private async void loadRequestList()
         {
             var list = await App.MobileService.GetTable<Asset>().ToListAsync();
+            
             foreach (Asset asset in list)
             {
-                if (!asset.status.Equals("AVAILABLE"))
+                if (asset.status.Equals("AVAILABLE"))
                 {
                     Organization owner = await getOwner(asset.owner);
                     plotPoint(owner.latitude, owner.longitude);
@@ -79,6 +326,7 @@ namespace pewpewmobileapp
             var list = await App.MobileService.GetTable<Organization>().ToListAsync();
             foreach (Organization o in list)
             {
+                Debug.WriteLine("o.id: " + o.id + "string id: " + id);
                 if (o.id.Equals(id))
                 {
                     return o;
