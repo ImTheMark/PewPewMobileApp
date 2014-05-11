@@ -468,16 +468,17 @@ namespace pewpewmobileapp
         {
             int count = 0;
             //btnLogin.IsEnabled = false;
-
+            System.Diagnostics.Debug.WriteLine("LOGING IN");
             try
             {
                 if (txtUsername.Text.Equals("admin") && txtPassword.Password.Equals("admin"))
                 {
-                    NavigationService.Navigate(new Uri("/AdminPage.xaml", UriKind.Relative));
                     userID = "1";
                     userType = "ADMIN";
                     //txtMessage.Text = "LOGIN ADMIN";
+                    System.Diagnostics.Debug.WriteLine("LOGIN ADMIN");
                     count++;
+                    NavigationService.Navigate(new Uri("/AdminPage.xaml", UriKind.Relative));
                 }
                 else
                 {
@@ -485,7 +486,7 @@ namespace pewpewmobileapp
                     List<Town> filter = await results.ToListAsync();
                     foreach (Town a in filter)
                     {
-                        if (a.email.Equals(txtUsername.Text) && a.password.Equals(txtPassword.Password))
+                        if (a.username.Equals(txtUsername.Text) && a.password.Equals(txtPassword.Password))
                         {
                             userID = a.id;
                             userType = "TOWN";
@@ -493,16 +494,18 @@ namespace pewpewmobileapp
                             break;
                         }
                     }
-                    if (userType == "TOWN")
+                    if (userType.Equals("TOWN"))
+                    {
+                        System.Diagnostics.Debug.WriteLine("LOGIN TOWN");
                         NavigationService.Navigate(new Uri("/BarangayPage.xaml", UriKind.Relative));
-                        //txtMessage.Text = "LOGIN TOWN";
+                    }
                     else
                     {
                         var results2 = App.MobileService.GetTable<Organization>();
                         List<Organization> filter2 = await results2.ToListAsync();
                         foreach (Organization a in filter2)
                         {
-                            if (a.email.Equals(txtUsername.Text) && a.password.Equals(txtPassword.Password))
+                            if (a.username.Equals(txtUsername.Text) && a.password.Equals(txtPassword.Password))
                             {
                                 userID = a.id;
                                 userType = "ORG";
@@ -510,14 +513,16 @@ namespace pewpewmobileapp
                                 break;
                             }
                         }
-                        if (userType == "ORG")
+                        if (userType.Equals("ORG"))
+                        {
+                            System.Diagnostics.Debug.WriteLine("LOGIN ORG");
                             NavigationService.Navigate(new Uri("/OrganizationPage.xaml", UriKind.Relative));
-                            //txtMessage.Text = "LOGIN ORG";
+                        }
                     }
                 }
 
-                //if (count == 0)
-                //    txtMessage.Text = "ERROR";
+                if (count == 0)
+                    System.Diagnostics.Debug.WriteLine("NO ACCOUNT");
 
             }
             catch (Exception e1)

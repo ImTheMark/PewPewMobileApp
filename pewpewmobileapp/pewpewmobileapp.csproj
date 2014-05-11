@@ -163,6 +163,43 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\icons_goods\cannedGood.png" />
+    <Content Include="Assets\icons_goods\cannedGooddis.png" />
+    <Content Include="Assets\icons_goods\cannedGoodpressed.png" />
+    <Content Include="Assets\icons_goods\medicalSupplies.png" />
+    <Content Include="Assets\icons_goods\medicalSuppliesdis.png" />
+    <Content Include="Assets\icons_goods\medicalSuppliespressed.png" />
+    <Content Include="Assets\icons_goods\milk.png" />
+    <Content Include="Assets\icons_goods\milkdis.png" />
+    <Content Include="Assets\icons_goods\milkpressed.png" />
+    <Content Include="Assets\icons_goods\noodle.png" />
+    <Content Include="Assets\icons_goods\noodledis.png" />
+    <Content Include="Assets\icons_goods\noodlepressed.png" />
+    <Content Include="Assets\icons_goods\others.png" />
+    <Content Include="Assets\icons_goods\readytoeat.png" />
+    <Content Include="Assets\icons_goods\readytoeatdis.png" />
+    <Content Include="Assets\icons_goods\readytoeatpressed.png" />
+    <Content Include="Assets\icons_goods\rice.png" />
+    <Content Include="Assets\icons_goods\ricedis.png" />
+    <Content Include="Assets\icons_goods\ricepressed.png" />
+    <Content Include="Assets\icons_goods\shirt.png" />
+    <Content Include="Assets\icons_goods\shirtdis.png" />
+    <Content Include="Assets\icons_goods\shirtpressed.png" />
+    <Content Include="Assets\icons_goods\soap.png" />
+    <Content Include="Assets\icons_goods\soapdis.png" />
+    <Content Include="Assets\icons_goods\soappressed.png" />
+    <Content Include="Assets\icons_goods\tools.png" />
+    <Content Include="Assets\icons_goods\toolsdis.png" />
+    <Content Include="Assets\icons_goods\toolspressed.png" />
+    <Content Include="Assets\icons_goods\utensils.png" />
+    <Content Include="Assets\icons_goods\utensilsdis.png" />
+    <Content Include="Assets\icons_goods\utensilspressed.png" />
+    <Content Include="Assets\icons_goods\vehicle.png" />
+    <Content Include="Assets\icons_goods\vehicledis.png" />
+    <Content Include="Assets\icons_goods\vehiclepressed.png" />
+    <Content Include="Assets\icons_goods\water.png" />
+    <Content Include="Assets\icons_goods\waterdis.png" />
+    <Content Include="Assets\icons_goods\waterpressed.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
