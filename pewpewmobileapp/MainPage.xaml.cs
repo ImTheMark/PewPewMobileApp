@@ -246,7 +246,7 @@ namespace pewpewmobileapp
                         }
                     }
                     if (userType == "TOWN")
-                        NavigationService.Navigate(new Uri("/TownPage.xaml", UriKind.Relative));
+                        NavigationService.Navigate(new Uri("/BarangayPage.xaml", UriKind.Relative));
                         //txtMessage.Text = "LOGIN TOWN";
                     else
                     {
@@ -263,7 +263,7 @@ namespace pewpewmobileapp
                             }
                         }
                         if (userType == "ORG")
-                            NavigationService.Navigate(new Uri("/OrgPage.xaml", UriKind.Relative));
+                            NavigationService.Navigate(new Uri("/OrganizationPage.xaml", UriKind.Relative));
                             //txtMessage.Text = "LOGIN ORG";
                     }
                 }

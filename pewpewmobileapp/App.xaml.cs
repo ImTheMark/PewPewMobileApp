@@ -24,7 +24,7 @@ namespace pewpewmobileapp
             "https://pewpewmobileapp.azure-mobile.net/",
             "jASrkkZCvDGCKTIDqDalwNRzHYbTIZ78"
             );
-
+        
         /// <summary>
         /// Constructor for the Application object.
         /// </summary>
